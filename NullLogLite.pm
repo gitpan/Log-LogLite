@@ -3,7 +3,7 @@ package Log::NullLogLite;
 use strict;
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.81;
+$VERSION = 0.82;
 
 # According to the Null pattern.
 #
@@ -131,7 +131,7 @@ Rani Pinchuk, rani@cpan.org
 
 =head1 COPYRIGHT
 
-Copyright (c) 2001 EM-TECH (www.em-tech.net) & Rani Pinchuk. 
+Copyright (c) 2001-2002 Ockham Technology N.V. & Rani Pinchuk. 
 All rights reserved.  
 This package is free software; you can redistribute it and/or modify 
 it under the same terms as Perl itself.

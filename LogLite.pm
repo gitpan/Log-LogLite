@@ -3,10 +3,10 @@ package Log::LogLite;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = 0.81;
+$VERSION = 0.82;
 
 use Carp;
-use IO::LockedFile 0.2;
+use IO::LockedFile 0.21;
 
 my $TEMPLATE = '[<date>] <<level>> <called_by><default_message><message>
 ';
@@ -285,7 +285,7 @@ Rani Pinchuk, rani@cpan.org
 
 =head1 COPYRIGHT
 
-Copyright (c) 2001 EM-TECH (www.em-tech.net) & Rani Pinchuk. 
+Copyright (c) 2001-2002 Ockham Technology N.V. & Rani Pinchuk. 
 All rights reserved.  
 This package is free software; you can redistribute it and/or modify 
 it under the same terms as Perl itself.

@@ -1,5 +1,8 @@
 Revision history for Perl extension Log::LogLite.
 
+0.82 Tue Sep 24 14:23:49 CEST 2002
+       - Just fixed the copyright notice
+
 0.81 Thu Jan 31 13:16:52 CET 2002
        - Fixed that the log file will not be opened already locked. 
 	 Thanks to Tilman Mueller-Gerbes!
