@@ -1,5 +1,9 @@
 Revision history for Perl extension Log::LogLite.
 
+0.81 Thu Jan 31 13:16:52 CET 2002
+       - Fixed that the log file will not be opened already locked. 
+	 Thanks to Tilman Mueller-Gerbes!
+
 0.8  Thu Jan  3 14:57:22 CET 2002
        - For the new year, I got lucky, and found out the obvious: 
 	 there is a function called "caller" build in Perl. 

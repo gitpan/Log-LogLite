@@ -3,7 +3,7 @@ package Log::LogLite;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = 0.8;
+$VERSION = 0.81;
 
 use Carp;
 use IO::LockedFile 0.2;
@@ -37,7 +37,8 @@ sub new {
     $self->{DEFAULT_MESSAGE} = shift || ""; # the default message
     $self->{TEMPLATE} = shift || $TEMPLATE; # the template
     $self->{LOG_LINE_NUMBERS} = $LOG_LINE_NUMBERS;
-    $self->{FH} = new IO::LockedFile(">>".$self->{FILE_PATH});
+    # we create IO::LockedFile object that can be locked later
+    $self->{FH} = new IO::LockedFile({ lock => 0 }, ">>".$self->{FILE_PATH});
     unless ($self->{FH}->opened) {
 	croak("Log::LogLite: Cannot open the log file $self->{FILE_PATH}");
     }
