@@ -3,10 +3,10 @@ package Log::LogLite;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = 0.2;
+$VERSION = 0.3;
 
 use Carp;
-use IO::LockedFile 0.1;
+use IO::LockedFile 0.2;
 use Devel::DumpStack qw(caller2);
 
 my $TEMPLATE = '[<date>] <<level>> <called_by><default_message><message>
@@ -38,6 +38,10 @@ sub new {
     $self->{DEFAULT_MESSAGE} = shift || ""; # the default message
     $self->{TEMPLATE} = shift || $TEMPLATE; # the template
     $self->{LOG_LINE_NUMBERS} = $LOG_LINE_NUMBERS;
+    $self->{FH} = new IO::LockedFile(">>".$self->{FILE_PATH});
+    unless ($self->{FH}->opened) {
+	croak("Log::LogLite: Cannot open the log file $self->{FILE_PATH}");
+    }
     bless ($self, $class);
     return $self;
 } # of new
@@ -56,22 +60,20 @@ sub write {
 	return;
     }
 
-    # open the log file to append (the file is opened with a lock)
-    my $fh = new IO::LockedFile(">>".$self->{FILE_PATH});
-    if ($fh->opened) {
-	# parse the template
-	my $line = $self->{TEMPLATE};
-	$line =~ s!<date>!date_string()!igoe;
-	$line =~ s!<level>!$level!igo;
-	$line =~ s!<called_by>!$self->called_by()!igoe;
-	$line =~ s!<default_message>!$self->{DEFAULT_MESSAGE}!igo;
-	$line =~ s!<message>!$message!igo;
-	print $fh $line; 
-	undef $fh; # automatically closes the file	
-    }
-    else {
-	croak("Log::LogLite: Cannot open the log file $self->{FILE_PATH}");
-    }
+    # lock the log file before we append 
+    $self->{FH}->lock();
+
+    # parse the template
+    my $line = $self->{TEMPLATE};
+    $line =~ s!<date>!date_string()!igoe;
+    $line =~ s!<level>!$level!igo;
+    $line =~ s!<called_by>!$self->called_by()!igoe;
+    $line =~ s!<default_message>!$self->{DEFAULT_MESSAGE}!igo;
+    $line =~ s!<message>!$message!igo;
+    print {$self->{FH}} $line; 
+    
+    # unlock the file
+    $self->{FH}->unlock();
 } # of write   
 
 ##########################

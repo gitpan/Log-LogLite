@@ -1,4 +1,10 @@
 Revision history for Perl extension Log::LogLite.
 
+0.3  Mon Jul  2 21:30:35 CEST 2001
+       - OK, now it is written correctly - the log file is opened when
+         we construct the object. It is locked everytime we write into
+         it, and it is closed in the destructor. Thanks Rob Napier for
+         guiding me to do it that way.
+
 0.2  Fri Feb  9 15:21:28 CET 2001
        - first distribution on CPAN

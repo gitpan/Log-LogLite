@@ -45,6 +45,8 @@ DESCRIPTION
 PREREQUISITES
 
   IO::LockedFile 
+  Devel::DumpStack
+  Devel::CallerItem
 
 INSTALLATION
 
@@ -66,4 +68,7 @@ AUTHOR NOTES
 
 Rani Pinchuk
 rani@cpan.org
+
+
+
 

@@ -5,6 +5,6 @@ WriteMakefile(
     'NAME'	=> 'Log::LogLite',
     'VERSION_FROM' => 'LogLite.pm', # finds $VERSION
     'PREREQ_PM' => {
-	IO::LockedFile => 0.1, 
+	IO::LockedFile => 0.2, 
 	Devel::DumpStack => undef },
 );
