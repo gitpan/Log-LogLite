@@ -1,5 +1,12 @@
 Revision history for Perl extension Log::LogLite.
 
+0.8  Thu Jan  3 14:57:22 CET 2002
+       - For the new year, I got lucky, and found out the obvious: 
+	 there is a function called "caller" build in Perl. 
+	 So no more use of the annoying Devel::CallerItem! 
+         Besides, I upgraded the VERSION number to 0.8, because we 
+	 use this class for quite a time now, and had no problems.
+ 
 0.3  Mon Jul  2 21:30:35 CEST 2001
        - OK, now it is written correctly - the log file is opened when
          we construct the object. It is locked everytime we write into

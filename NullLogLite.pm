@@ -3,7 +3,7 @@ package Log::NullLogLite;
 use strict;
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.2;
+$VERSION = 0.8;
 
 # According to the Null pattern.
 #

@@ -3,11 +3,10 @@ package Log::LogLite;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = 0.3;
+$VERSION = 0.8;
 
 use Carp;
 use IO::LockedFile 0.2;
-use Devel::DumpStack qw(caller2);
 
 my $TEMPLATE = '[<date>] <<level>> <called_by><default_message><message>
 ';
@@ -142,10 +141,15 @@ sub called_by {
     my $subr; 
     my $has_args;
     my $wantarray;
+    my $evaltext;
+    my $is_require;
+    my $hints;
+    my $bitmask;
     my @subr;
     my $str = "";
     while (1) {
-	($args,$pack,$file,$line,$subr,$has_args,$wantarray) = caller2($depth);
+	($pack, $file, $line, $subr, $has_args, $wantarray, $evaltext, 
+	 $is_require, $hints, $bitmask) = caller($depth);
 	unless (defined($subr)) {
 	    last;
 	}
@@ -194,7 +198,7 @@ to the C<write> method may write a new line in the log file. If the level
 of the message is lower or equal to the logging level, the message will 
 be written to the log file. The format of the logging messages can be 
 controled by changing the template, and by defining a default message.
-The log file uses the IO::LockedFile class and the Devel::DumpStack module.
+The class uses the IO::LockedFile class.
 
 =head1 CONSTRUCTOR
 
@@ -287,7 +291,6 @@ it under the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-L<Devel::DumpStack(3)>,
 L<IO::LockedFile(3)>
 
 =cut

@@ -45,8 +45,6 @@ DESCRIPTION
 PREREQUISITES
 
   IO::LockedFile 
-  Devel::DumpStack
-  Devel::CallerItem
 
 INSTALLATION
 
